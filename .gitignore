@@ -1,0 +1,12 @@
+node_modules
+coverage/
+.env
+node_modules
+.vscode
+uploads
+src/uploads
+/**/*.js
+/**/*.*.js
+/**/*.js.map
+logs
+src/logs

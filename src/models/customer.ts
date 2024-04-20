@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { CustomerDocument } from "../types/customer.interface";
 import bcrypt from 'bcryptjs';
+import { NextFunction } from "express";
 // import { NextFunction } from "express";
 
 const customerSchema = new mongoose.Schema<CustomerDocument>(
@@ -70,12 +71,18 @@ const customerSchema = new mongoose.Schema<CustomerDocument>(
     }, { timestamps: true }
 )
 
-// customerSchema.pre('save', async function preSaveFunction(this: any, next: NextFunction) {
-//     if (this.isModified('password') && this.authMethod == 'local') {
-//         this.password = await bcrypt.hash(this.password, 10);
-//     }
-//     next();
-// });
+customerSchema.pre(
+    'save',
+    async function (
+        this: any,
+        next: (err?: mongoose.CallbackError) => void,
+    ): Promise<void> {
+        if (this.isModified('password') && this.authMethod === 'local') {
+            this.password = await bcrypt.hash(this.password, 10);
+        }
+        next();
+    },
+);
 
 customerSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);

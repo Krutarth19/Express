@@ -18,6 +18,7 @@ import { unCoughtErrorHandler } from './handlers/errorHandler';
 import { connectDB } from "./config/dbConfig";
 import { config } from "./types/default";
 import passport from "./services/passport.service";
+import Routes from "./routes/routes";
 passport.initialize()
 // import rateLimit from 'express-rate-limiter';
 // import Routes from './routes';
@@ -28,7 +29,7 @@ passport.initialize()
 export default class Server {
     constructor(app: Application) {
         this.config(app);
-        //   new Routes(app);
+        new Routes(app);
     }
 
     public config(app: Application): void {

@@ -5,7 +5,9 @@ import { config } from "../types/default";
 import * as dotenv from 'dotenv';
 dotenv.config();
 import Customer from "../models/customer";
-import { CustomerDocument } from "../types/customer.interface";
+import { CustomerDocument } from "../types/customer";
+import Admin from "../models/admin";
+import SuperAdmin from "../models/superAdmin";
 
 const opts = {
     jwt: {
@@ -56,15 +58,15 @@ const createJwtStrategy = (userModel: any, payloadProperties: string[], userType
 
 export default {
     initialize: () => {
-        // passport.use(
-        //     'superAdmin',
-        //     createJwtStrategy(SuperAdmin, ['email'], 'isSuperAdmin')
-        // );
+        passport.use(
+            'superAdmin',
+            createJwtStrategy(SuperAdmin, ['email'], 'isSuperAdmin')
+        );
 
-        // passport.use(
-        //     'admin',
-        //     createJwtStrategy(Admin, ['email'], 'isAdmin')
-        // );
+        passport.use(
+            'admin',
+            createJwtStrategy(Admin, ['email'], 'isAdmin')
+        );
 
         passport.use(
             'customer',

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { LogDocument } from '../types/log.interfaces';
+import { LogDocument } from '../types/log';
 
 const logSchema = new mongoose.Schema<LogDocument>({
     requestApi: {

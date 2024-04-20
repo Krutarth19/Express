@@ -15,5 +15,5 @@ export interface CustomerDocument extends Document {
     passwordResetToken: string | null;
     passwordResetTokenExpiry: Date;
     phoneNumber: number | null;
-    
+    refreshToken:string | null;
 }

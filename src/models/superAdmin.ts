@@ -1,9 +1,9 @@
 import mongoose, { Schema } from "mongoose";
-import { CustomerDocument } from "../types/customer";
+import { SuperAdminDocument } from "../types/superAdmin";
 import bcrypt from 'bcryptjs';
 import { NextFunction } from "express";
 
-const customerSchema = new mongoose.Schema<CustomerDocument>(
+const superAdminSchema = new mongoose.Schema<SuperAdminDocument>(
     {
         name: {
             type: String,
@@ -25,35 +25,13 @@ const customerSchema = new mongoose.Schema<CustomerDocument>(
         },
         role: {
             type: String,
-            enum: ['customer', 'superAdmin', 'admin','seller','distributor'],
-            default: 'user',
+            enum: ['customer', 'superAdmin', 'admin', 'seller', 'distributor'],
+            default: 'superAdmin',
             required: [true, 'Auth method is required']
-        },
-        googleId: {
-            type: String,
-            required: false,
-        },
-        authMethod: {
-            type: String,
-            enum: ['google', 'local', 'github'],
-            default: 'local',
-            required: [true, 'Auth method is required']
-        },
-        isEmailVerified: {
-            type: Boolean,
-            default: false
         },
         lastLogin: {
             type: Date,
             default: Date.now
-        },
-        accountVerificationToken: {
-            type: String,
-            default: null
-        },
-        accountVerificationTokenExpiry: {
-            type: Date,
-            default: null,
         },
         passwordResetToken: {
             type: String,
@@ -67,14 +45,14 @@ const customerSchema = new mongoose.Schema<CustomerDocument>(
             type: Number,
             default: null
         },
-        refreshToken:{
+        refreshToken: {
             type: Date,
             default: null,
         }
     }, { timestamps: true }
 )
 
-customerSchema.pre(
+superAdminSchema.pre(
     'save',
     async function (
         this: any,
@@ -87,9 +65,9 @@ customerSchema.pre(
     },
 );
 
-customerSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
+superAdminSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
     return await bcrypt.compare(password, this.password);
 };
 
-const Customer = mongoose.model<CustomerDocument>('Customer', customerSchema);
-export default Customer;
+const SuperAdmin = mongoose.model<SuperAdminDocument>('SuperAdmin', superAdminSchema);
+export default SuperAdmin;

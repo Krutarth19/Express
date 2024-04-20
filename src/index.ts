@@ -16,6 +16,9 @@ import path from "path";
 import { requestLog } from './services/log.service';
 import { unCoughtErrorHandler } from './handlers/errorHandler';
 import { connectDB } from "./config/dbConfig";
+import { config } from "./types/default";
+import passport from "./services/passport.service";
+passport.initialize()
 // import rateLimit from 'express-rate-limiter';
 // import Routes from './routes';
 
@@ -54,7 +57,7 @@ export default class Server {
         app.use(urlencoded({ extended: true }));
         app.use(json());
         app.use(expressSession({
-            secret: process.env.SESSION_SECRET as string,
+            secret: config.SESSION_SECRET,
             resave: false,
             saveUninitialized: true
         }))

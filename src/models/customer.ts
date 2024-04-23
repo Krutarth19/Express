@@ -25,8 +25,8 @@ const customerSchema = new mongoose.Schema<CustomerDocument>(
         },
         role: {
             type: String,
-            enum: ['customer', 'superAdmin', 'admin','seller','distributor'],
-            default: 'user',
+            enum: ['customer', 'superAdmin', 'admin', 'seller', 'distributor'],
+            default: 'customer',
             required: [true, 'Auth method is required']
         },
         googleId: {
@@ -47,14 +47,14 @@ const customerSchema = new mongoose.Schema<CustomerDocument>(
             type: Date,
             default: Date.now
         },
-        accountVerificationToken: {
-            type: String,
-            default: null
-        },
-        accountVerificationTokenExpiry: {
-            type: Date,
-            default: null,
-        },
+        // accountVerificationToken: {
+        //     type: String,
+        //     default: null
+        // },
+        // accountVerificationTokenExpiry: {
+        //     type: Date,
+        //     default: null,
+        // },
         passwordResetToken: {
             type: String,
             default: null,
@@ -65,9 +65,17 @@ const customerSchema = new mongoose.Schema<CustomerDocument>(
         },
         phoneNumber: {
             type: Number,
+            default: null,
+        },
+        otp: {
+            type: String,
             default: null
         },
-        refreshToken:{
+        otpExpiry: {
+            type: Date,
+            default: Date.now(),
+        },
+        refreshToken: {
             type: Date,
             default: null,
         }
@@ -91,5 +99,6 @@ customerSchema.methods.comparePassword = async function (password: string): Prom
     return await bcrypt.compare(password, this.password);
 };
 
-const Customer = mongoose.model<CustomerDocument>('Customer', customerSchema);
-export default Customer;
+
+const CustomerModel = mongoose.model<CustomerDocument>('Customer', customerSchema);
+export default CustomerModel;

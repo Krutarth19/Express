@@ -10,10 +10,12 @@ export interface CustomerDocument extends Document {
     authMethod: string;
     isEmailVerified: boolean;
     lastLogin: Date;
-    accountVerificationToken: string | null;
-    accountVerificationTokenExpiry: Date;
+    // accountVerificationToken: string | null;
+    // accountVerificationTokenExpiry: Date;
+    otp?: string | null;
+    otpExpiry: Date;
     passwordResetToken: string | null;
     passwordResetTokenExpiry: Date;
     phoneNumber: number | null;
-    refreshToken:string | null;
+    refreshToken: string | null;
 }

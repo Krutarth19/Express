@@ -29,6 +29,6 @@ export const requestLog = async (
 
         
     } catch (error) {
-        console.log('error while write log')
+        console.log('error in writing log')
     }
 }

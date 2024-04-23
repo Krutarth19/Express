@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Express!</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center; /* Center align container content */
+      }
+      .logo {
+        margin-bottom: 20px;
+      }
+      .logo img {
+        width: 150px;
+        display: block;
+        margin: 0 auto; /* Center align logo */
+      }
+      h2 {
+        color: #333;
+      }
+      p {
+        color: #666;
+        margin-bottom: 15px; /* Add some bottom margin to paragraphs */
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        text-decoration: none;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #0056b3;
+        color: #fff;
+      }
+      .regards {
+        margin-top: 20px;
+        font-style: italic;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img
+          src="https://res.cloudinary.com/dqnvitutu/image/upload/v1707470923/hxumuhseroskxwxxyenb.png"
+          alt="Express Logo"
+        />
+      </div>
+      <h2>Welcome to Express!</h2>
+      <p>Dear <%= name %>,</p>
+      <p>We are thrilled to have you join Express!</p>
+      <p>Feel free to explore our platform and make the most out of your experience.</p>
+      <a href="/" class="btn">Explore</a>
+      <p>If you have any questions or need assistance, don't hesitate to reach out to us.</p>
+      <p>Thank you once again for choosing Express!</p>
+      <p class="regards">Regards,<br />The Express Team</p>
+    </div>
+  </body>
+</html>

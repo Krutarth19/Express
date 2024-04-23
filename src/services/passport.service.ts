@@ -8,6 +8,7 @@ import Customer from "../models/customer";
 import { CustomerDocument } from "../types/customer";
 import Admin from "../models/admin";
 import SuperAdmin from "../models/superAdmin";
+import CustomerModel from "../models/customer";
 
 const opts = {
     jwt: {
@@ -98,7 +99,7 @@ passport.use(
         callbackURL: config.GOOGLE_CALLBACK_URL
     }, async (accessToken: string, refreshToken: string, profile: Profile, done: any) => {
         try {
-            let user = await Customer.findOne({
+            let user = await CustomerModel.findOne({
                 googleId: profile.id
             });
 
@@ -121,10 +122,9 @@ passport.use(
                 });
             }
 
-
             done(null, { user, accessToken });
         } catch (error: any) {
-            console.log("Error in Google Strategy:", error);
+            console.log("error in Google Strategy:", error);
             done(null, error);
         }
     })
